@@ -50,10 +50,10 @@ class Cell:
         line_color = "red"
         if undo:
             line_color = "grey"
-        width_a = self._bottom_right_corner.x - self._top_left_corner.x
-        length_a = self._top_left_corner.y - self._bottom_right_corner.y
+        width_a = self._bottom_right_corner._x - self._top_left_corner._x
+        length_a = self._top_left_corner._y - self._bottom_right_corner._y
         center_a = Point(width_a // 2, length_a // 2)
-        width_b = to_cell.bottom_right_corner.x - to_cell.top_left_corner.x
-        length_b = to_cell.top_left_corner.y - to_cell.bottom_right_corner.y
+        width_b = to_cell._bottom_right_corner._x - to_cell._top_left_corner._x
+        length_b = to_cell._top_left_corner._y - to_cell._bottom_right_corner._y
         center_b = Point(width_b // 2, length_b // 2)
         self._win.draw_line(Line(center_a, center_b), line_color)

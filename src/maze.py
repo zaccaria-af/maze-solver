@@ -98,7 +98,7 @@ class Maze:
 
     def _reset_cells_visited(self) -> None:
         for col in self._cells:
-            for cell in self._cells[col]:
+            for cell in col:
                 cell.visited = False
 
     def _solve_r(self, i: int, j: int) -> bool:
@@ -109,6 +109,7 @@ class Maze:
             return True
         adjacent_cells = self._get_adjacent_cells(i, j)
         for direction, adjacent_cell in adjacent_cells.items():
+            adjacent_cell = adjacent_cell[0]
             match direction:
                 case "left":
                     if not current_cell.has_left_wall and not adjacent_cell.visited:
