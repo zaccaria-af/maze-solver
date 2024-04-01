@@ -4,11 +4,11 @@ from point import Point
 
 class Line:
     def __init__(self, a: Point, b: Point) -> None:
-        self.a = a
-        self.b = b
+        self._a = a
+        self._b = b
 
     def draw(self, canvas: Canvas, fill_color: str) -> None:
         canvas.create_line(
-                self.a.x, self.a.y, self.b.x, self.b.y, fill=fill_color, width=2
+                self._a.x, self._a.y, self._b.x, self._b.y, fill=fill_color, width=2
         )
         canvas.pack()

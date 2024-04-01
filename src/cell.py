@@ -5,34 +5,49 @@ from line import Line
 
 class Cell:
     def __init__(self, win: Window = None) -> None:
+        self._top_left_corner = None
+        self._bottom_right_corner = None
+        self._win = win
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self._top_left_corner = None
-        self._bottom_right_corner = None
-        self._win = win
+        self.visited = False
 
     def draw(self, top_left_corner: Point, bottom_right_corner: Point) -> None:
-        self.top_left_corner = top_left_corner
-        self.bottom_right_corner = bottom_right_corner
+        if self._win is None:
+            return
+        self._top_left_corner = top_left_corner
+        self._bottom_right_corner = bottom_right_corner
         top_right_corner = Point(bottom_right_corner.x, top_left_corner.y)
         bottom_left_corner = Point(top_left_corner.x, bottom_right_corner.y)
         if self.has_left_wall:
-            self._win.draw_line(Line(top_left_corner, bottom_left_corner), "black")
+            line = Line(top_left_corner, bottom_left_corner)
+            self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
         if self.has_right_wall:
-            self._win.draw_line(Line(top_right_corner, bottom_right_corner), "black")
+            line = Line(top_right_corner, bottom_right_corner)
+            self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
         if self.has_top_wall:
-            self._win.draw_line(Line(top_left_corner, top_right_corner), "black")
+            line = Line(top_left_corner, top_right_corner)
+            self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
         if self.has_bottom_wall:
-            self._win.draw_line(Line(bottom_right_corner, bottom_left_corner), "black")
+            line = Line(bottom_right_corner, bottom_left_corner)
+            self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
 
     def draw_move(self, to_cell: object, undo: bool = False) -> None:
         line_color = "red"
         if undo:
             line_color = "grey"
-        width_a = self.bottom_right_corner.x - self.top_left_corner.x
-        length_a = self.top_left_corner.y - self.bottom_right_corner.y
+        width_a = self._bottom_right_corner.x - self._top_left_corner.x
+        length_a = self._top_left_corner.y - self._bottom_right_corner.y
         center_a = Point(width_a // 2, length_a // 2)
         width_b = to_cell.bottom_right_corner.x - to_cell.top_left_corner.x
         length_b = to_cell.top_left_corner.y - to_cell.bottom_right_corner.y
