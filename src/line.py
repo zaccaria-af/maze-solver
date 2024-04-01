@@ -9,6 +9,6 @@ class Line:
 
     def draw(self, canvas: Canvas, fill_color: str) -> None:
         canvas.create_line(
-                self._a.x, self._a.y, self._b.x, self._b.y, fill=fill_color, width=2
+                self._a._x, self._a._y, self._b._x, self._b._y, fill=fill_color, width=2
         )
         canvas.pack()

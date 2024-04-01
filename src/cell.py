@@ -19,27 +19,31 @@ class Cell:
             return
         self._top_left_corner = top_left_corner
         self._bottom_right_corner = bottom_right_corner
-        top_right_corner = Point(bottom_right_corner.x, top_left_corner.y)
-        bottom_left_corner = Point(top_left_corner.x, bottom_right_corner.y)
+        top_right_corner = Point(bottom_right_corner._x, top_left_corner._y)
+        bottom_left_corner = Point(top_left_corner._x, bottom_right_corner._y)
         if self.has_left_wall:
             line = Line(top_left_corner, bottom_left_corner)
             self._win.draw_line(line, "black")
         else:
+            line = Line(top_left_corner, bottom_left_corner)
             self._win.draw_line(line, "white")
         if self.has_right_wall:
             line = Line(top_right_corner, bottom_right_corner)
             self._win.draw_line(line, "black")
         else:
+            line = Line(top_right_corner, bottom_right_corner)
             self._win.draw_line(line, "white")
         if self.has_top_wall:
             line = Line(top_left_corner, top_right_corner)
             self._win.draw_line(line, "black")
         else:
+            line = Line(top_left_corner, top_right_corner)
             self._win.draw_line(line, "white")
         if self.has_bottom_wall:
             line = Line(bottom_right_corner, bottom_left_corner)
             self._win.draw_line(line, "black")
         else:
+            line = Line(bottom_right_corner, bottom_left_corner)
             self._win.draw_line(line, "white")
 
     def draw_move(self, to_cell: object, undo: bool = False) -> None:
