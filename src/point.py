@@ -1,4 +1,4 @@
 class Point:
-    def __init__(self, x: int, y: int) -> None:
-        self._x = x
-        self._y = y
+    def __init__(self, x: float, y: float) -> None:
+        self.x = x
+        self.y = y
